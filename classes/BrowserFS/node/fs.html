@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='../../../assets/codo.css' type='text/css'>
+  <script src='../../../assets/codo.js'></script>
+  <script src='../../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../../README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <a href='../../../classes/BrowserFS.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <span class='title'>node</span>
+    &raquo;
+    <span class='title'>fs</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        BrowserFS.node.fs
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;core&#47;node_fs.coffee</td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>The node frontend to all filesystems.
+This layer handles:</p><ul>
+<li>Sanity checking inputs.</li>
+<li>Normalizing paths.</li>
+<li>Resetting stack depth for asynchronous operations which may not go through the browser by wrapping all input callbacks using <code>setImmediate</code>.</li>
+<li>Performing the requested operation through the filesystem or the file descriptor, as appropriate.</li>
+<li>Handling optional arguments and setting default arguments.</li>
+</ul>
+
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='http://nodejs.org/api/fs.html'>http:&#47;&#47;nodejs.org&#47;api&#47;fs.html</a>
+    </li>
+  </ul>
+</div>
+      <h2>Class Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#_initialize-class'>
+        + (void) <strong>_initialize</strong>(rootFS)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getRootFS-class'>
+        + (BrowserFS.FileSystem | null) <strong>getRootFS</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      <strong>NONSTANDARD</strong>: Grab the FileSystem instance that backs this API.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#_canonicalizePath-class'>
+        + (void) <strong>_canonicalizePath</strong>(p)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rename-class'>
+        + (void) <strong>rename</strong>(oldPath, newPath, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous rename.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#exists-class'>
+        + (void) <strong>exists</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Test whether or not the given path exists by checking with the file system.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#stat-class'>
+        + (void) <strong>stat</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>stat</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#lstat-class'>
+        + (void) <strong>lstat</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>lstat</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#truncate-class'>
+        + (void) <strong>truncate</strong>(path, len, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>truncate</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#unlink-class'>
+        + (void) <strong>unlink</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>unlink</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#open-class'>
+        + (void) <strong>open</strong>(path, flags, mode, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous file open.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readFile-class'>
+        + (void) <strong>readFile</strong>(filename, options, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronously reads the entire contents of a file.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeFile-class'>
+        + (void) <strong>writeFile</strong>(filename, data, options = {}, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronously writes data to a file, replacing the file if it already exists.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#appendFile-class'>
+        + (void) <strong>appendFile</strong>(filename, data, options, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronously append data to a file, creating the file if it not yet exists.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fstat-class'>
+        + (void) <strong>fstat</strong>(fd, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous <code>fstat</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#close-class'>
+        + (void) <strong>close</strong>(fd, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous close.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#ftruncate-class'>
+        + (void) <strong>ftruncate</strong>(fd, len, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous ftruncate.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fsync-class'>
+        + (void) <strong>fsync</strong>(fd, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous fsync.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fdatasync-class'>
+        + (void) <strong>fdatasync</strong>(fd, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous fdatasync.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#write-class'>
+        + (void) <strong>write</strong>(fd, buffer, offset, length, position, callback)
+      </a>
+    </span>
+    <span class='desc'>
+      Write buffer to the file specified by <code>fd</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#read-class'>
+        + (void) <strong>read</strong>(fd, buffer, offset, length, position, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Read data from the file specified by <code>fd</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fchown-class'>
+        + (void) <strong>fchown</strong>(fd, uid, gid, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous <code>fchown</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fchmod-class'>
+        + (void) <strong>fchmod</strong>(fd, mode, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Asynchronous <code>fchmod</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#futimes-class'>
+        + (void) <strong>futimes</strong>(fd, atime, mtime, callback = nopCb)
+      </a>
+    </span>
+    <span class='desc'>
+      Change the file timestamps of a file referenced by the supplied file descriptor.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rmdir-class'>
+        + (void) <strong>rmdir</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>rmdir</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#mkdir-class'>
+        + (void) <strong>mkdir</strong>(path, mode, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>mkdir</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readdir-class'>
+        + (void) <strong>readdir</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>readdir</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#link-class'>
+        + (void) <strong>link</strong>(srcpath, dstpath, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>link</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#symlink-class'>
+        + (void) <strong>symlink</strong>(srcpath, dstpath, type, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>symlink</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readlink-class'>
+        + (void) <strong>readlink</strong>(path, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous readlink.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#chown-class'>
+        + (void) <strong>chown</strong>(path, uid, gid, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>chown</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#lchown-class'>
+        + (void) <strong>lchown</strong>(path, uid, gid, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>lchown</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#chmod-class'>
+        + (void) <strong>chmod</strong>(path, mode, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>chmod</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#lchmod-class'>
+        + (void) <strong>lchmod</strong>(path, mode, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>lchmod</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#utimes-class'>
+        + (void) <strong>utimes</strong>(path, atime, mtime, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Change file timestamps of the file referenced by the supplied path.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#realpath-class'>
+        + (void) <strong>realpath</strong>(path, cache, callback = nopCb)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Asynchronous <code>realpath</code>.
+    </span>
+  </li>
+</ul>
+      <h2>Class Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='_initialize-class'>
+      + (void) <strong>_initialize</strong>(rootFS)
+      (bound)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getRootFS-class'>
+      + (BrowserFS.FileSystem | null) <strong>getRootFS</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p><strong>NONSTANDARD</strong>: Grab the FileSystem instance that backs this API.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>BrowserFS.FileSystem | null</tt>)
+      &mdash;
+      <span class='desc'>Returns null if the file system has not been initialized.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='_canonicalizePath-class'>
+      + (void) <strong>_canonicalizePath</strong>(p)
+      (bound)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rename-class'>
+      + (void) <strong>rename</strong>(oldPath, newPath, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous rename. No arguments other than a possible exception are given
+to the completion callback.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>oldPath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>newPath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='exists-class'>
+      + (void) <strong>exists</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Test whether or not the given path exists by checking with the file system.
+Then call the callback argument with either true or false.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Sample invocation
+    </h4>
+    <pre><code class='coffee'>fs.exists(&#39;&#47;etc&#47;passwd&#39;, function (exists) {
+  util.debug(exists ? &quot;it&#39;s there&quot; : &quot;no passwd!&quot;);
+});</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(Boolean)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='stat-class'>
+      + (void) <strong>stat</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>stat</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, BrowserFS.node.fs.Stats)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='lstat-class'>
+      + (void) <strong>lstat</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>lstat</code>.
+<code>lstat()</code> is identical to <code>stat()</code>, except that if path is a symbolic link,
+then the link itself is stat-ed, not the file that it refers to.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, BrowserFS.node.fs.Stats)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='truncate-class'>
+      + (void) <strong>truncate</strong>(path, len, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>truncate</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>len</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='unlink-class'>
+      + (void) <strong>unlink</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>unlink</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='open-class'>
+      + (void) <strong>open</strong>(path, flags, mode, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous file open.
+Exclusive mode ensures that path is newly created.</p><p><code>flags</code> can be:</p><ul>
+<li><code>&#39;r&#39;</code> - Open file for reading. An exception occurs if the file does not exist.</li>
+<li><code>&#39;r+&#39;</code> - Open file for reading and writing. An exception occurs if the file does not exist.</li>
+<li><code>&#39;rs&#39;</code> - Open file for reading in synchronous mode. Instructs the filesystem to not cache writes.</li>
+<li><code>&#39;rs+&#39;</code> - Open file for reading and writing, and opens the file in synchronous mode.</li>
+<li><code>&#39;w&#39;</code> - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).</li>
+<li><code>&#39;wx&#39;</code> - Like &#39;w&#39; but opens the file in exclusive mode.</li>
+<li><code>&#39;w+&#39;</code> - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).</li>
+<li><code>&#39;wx+&#39;</code> - Like &#39;w+&#39; but opens the file in exclusive mode.</li>
+<li><code>&#39;a&#39;</code> - Open file for appending. The file is created if it does not exist.</li>
+<li><code>&#39;ax&#39;</code> - Like &#39;a&#39; but opens the file in exclusive mode.</li>
+<li><code>&#39;a+&#39;</code> - Open file for reading and appending. The file is created if it does not exist.</li>
+<li><code>&#39;ax+&#39;</code> - Like &#39;a+&#39; but opens the file in exclusive mode.</li>
+</ul>
+
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>flags</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number?</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>defaults to <code>0666</code></span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, BrowserFS.File)</tt>)
+      </span>
+    </li>
+  </ul>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='http://www.manpagez.com/man/2/open/'>http:&#47;&#47;www.manpagez.com&#47;man&#47;2&#47;open&#47;</a>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readFile-class'>
+      + (void) <strong>readFile</strong>(filename, options, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronously reads the entire contents of a file.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Usage example
+    </h4>
+    <pre><code class='coffee'>fs.readFile(&#39;&#47;etc&#47;passwd&#39;, function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>filename</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>Object?</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String | BrowserFS.node.Buffer)</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>If no encoding is specified, then the raw buffer is returned.</span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (option):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The string encoding for the file contents. Defaults to <code>null</code>.</span>
+    </li>
+    <li>
+      <span class='name'>flag</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>&#39;r&#39;</code>.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeFile-class'>
+      + (void) <strong>writeFile</strong>(filename, data, options = {}, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronously writes data to a file, replacing the file if it already
+exists.</p><p>The encoding option is ignored if data is a buffer.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Usage example
+    </h4>
+    <pre><code class='coffee'>fs.writeFile(&#39;message.txt&#39;, &#39;Hello Node&#39;, function (err) {
+  if (err) throw err;
+  console.log(&#39;It\&#39;s saved!&#39;);
+});</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>filename</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>String | BrowserFS.node.Buffer</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>Object?</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (option):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>&#39;utf8&#39;</code>.</span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>0666</code>.</span>
+    </li>
+    <li>
+      <span class='name'>flag</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>&#39;w&#39;</code>.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='appendFile-class'>
+      + (void) <strong>appendFile</strong>(filename, data, options, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronously append data to a file, creating the file if it not yet
+exists.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Usage example
+    </h4>
+    <pre><code class='coffee'>fs.appendFile(&#39;message.txt&#39;, &#39;data to append&#39;, function (err) {
+  if (err) throw err;
+  console.log(&#39;The &quot;data to append&quot; was appended to file!&#39;);
+});</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>filename</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>String | BrowserFS.node.Buffer</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>Object?</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (option):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>&#39;utf8&#39;</code>.</span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>0666</code>.</span>
+    </li>
+    <li>
+      <span class='name'>flag</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Defaults to <code>&#39;a&#39;</code>.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fstat-class'>
+      + (void) <strong>fstat</strong>(fd, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>fstat</code>.
+<code>fstat()</code> is identical to <code>stat()</code>, except that the file to be stat-ed is
+specified by the file descriptor <code>fd</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, BrowserFS.node.fs.Stats)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='close-class'>
+      + (void) <strong>close</strong>(fd, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous close.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='ftruncate-class'>
+      + (void) <strong>ftruncate</strong>(fd, len, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous ftruncate.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>len</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fsync-class'>
+      + (void) <strong>fsync</strong>(fd, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous fsync.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fdatasync-class'>
+      + (void) <strong>fdatasync</strong>(fd, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous fdatasync.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='write-class'>
+      + (void) <strong>write</strong>(fd, buffer, offset, length, position, callback)
+    </p>
+    <div class='docstring'>
+  <p>Write buffer to the file specified by <code>fd</code>.
+Note that it is unsafe to use fs.write multiple times on the same file
+without waiting for the callback.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>buffer</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/node/Buffer.html'>BrowserFS.node.Buffer</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Buffer containing the data to write to the file.</span>
+    </li>
+    <li>
+      <span class='name'>offset</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Offset in the buffer to start reading data from.</span>
+    </li>
+    <li>
+      <span class='name'>length</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The amount of bytes to write to the file.</span>
+    </li>
+    <li>
+      <span class='name'>position</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Offset from the beginning of the file where this data should be written. If position is null, the data will be written at the current position.</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, Number, BrowserFS.node.Buffer)</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The number specifies the number of bytes written into the file.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='read-class'>
+      + (void) <strong>read</strong>(fd, buffer, offset, length, position, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Read data from the file specified by <code>fd</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>buffer</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/node/Buffer.html'>BrowserFS.node.Buffer</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The buffer that the data will be written to.</span>
+    </li>
+    <li>
+      <span class='name'>offset</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The offset within the buffer where writing will start.</span>
+    </li>
+    <li>
+      <span class='name'>length</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>An integer specifying the number of bytes to read.</span>
+    </li>
+    <li>
+      <span class='name'>position</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>An integer specifying where to begin reading from in the file. If position is null, data will be read from the current file position.</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, Number, BrowserFS.node.Buffer)</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The number is the number of bytes read</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fchown-class'>
+      + (void) <strong>fchown</strong>(fd, uid, gid, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>fchown</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>uid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>gid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fchmod-class'>
+      + (void) <strong>fchmod</strong>(fd, mode, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>fchmod</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='futimes-class'>
+      + (void) <strong>futimes</strong>(fd, atime, mtime, callback = nopCb)
+    </p>
+    <div class='docstring'>
+  <p>Change the file timestamps of a file referenced by the supplied file
+descriptor.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>fd</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/File.html'>BrowserFS.File</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>atime</span>
+      <span class='type'>
+        (<tt>Date</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mtime</span>
+      <span class='type'>
+        (<tt>Date</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rmdir-class'>
+      + (void) <strong>rmdir</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>rmdir</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='mkdir-class'>
+      + (void) <strong>mkdir</strong>(path, mode, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>mkdir</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number?</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>defaults to <code>0777</code></span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readdir-class'>
+      + (void) <strong>readdir</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>readdir</code>. Reads the contents of a directory.
+The callback gets two arguments <code>(err, files)</code> where <code>files</code> is an array of
+the names of the files in the directory excluding <code>&#39;.&#39;</code> and <code>&#39;..&#39;</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String[])</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='link-class'>
+      + (void) <strong>link</strong>(srcpath, dstpath, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>link</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>srcpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>dstpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='symlink-class'>
+      + (void) <strong>symlink</strong>(srcpath, dstpath, type, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>symlink</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>srcpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>dstpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>type</span>
+      <span class='type'>
+        (<tt>String?</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>can be either <code>&#39;dir&#39;</code> or <code>&#39;file&#39;</code> (default is <code>&#39;file&#39;</code>)</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readlink-class'>
+      + (void) <strong>readlink</strong>(path, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous readlink.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='chown-class'>
+      + (void) <strong>chown</strong>(path, uid, gid, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>chown</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>uid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>gid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='lchown-class'>
+      + (void) <strong>lchown</strong>(path, uid, gid, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>lchown</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>uid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>gid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='chmod-class'>
+      + (void) <strong>chmod</strong>(path, mode, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>chmod</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='lchmod-class'>
+      + (void) <strong>lchmod</strong>(path, mode, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>lchmod</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='utimes-class'>
+      + (void) <strong>utimes</strong>(path, atime, mtime, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Change file timestamps of the file referenced by the supplied path.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>atime</span>
+      <span class='type'>
+        (<tt>Date</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mtime</span>
+      <span class='type'>
+        (<tt>Date</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='realpath-class'>
+      + (void) <strong>realpath</strong>(path, cache, callback = nopCb)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Asynchronous <code>realpath</code>. The callback gets two arguments
+<code>(err, resolvedPath)</code>. May use <code>process.cwd</code> to resolve relative paths.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Usage example
+    </h4>
+    <pre><code class='coffee'>var cache = {&#39;&#47;etc&#39;:&#39;&#47;private&#47;etc&#39;};
+fs.realpath(&#39;&#47;etc&#47;passwd&#39;, cache, function (err, resolvedPath) {
+  if (err) throw err;
+  console.log(resolvedPath);
+});</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cache</span>
+      <span class='type'>
+        (<tt>Object?</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>An object literal of mapped paths that can be used to force a specific path resolution or avoid additional <code>fs.stat</code> calls for known real paths.</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

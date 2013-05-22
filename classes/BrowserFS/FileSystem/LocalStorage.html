@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='../../../assets/codo.css' type='text/css'>
+  <script src='../../../assets/codo.js'></script>
+  <script src='../../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../../README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <a href='../../../classes/BrowserFS.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../../classes/BrowserFS/FileSystem.html' title='FileSystem'>FileSystem</a>
+    &raquo;
+    <span class='title'>LocalStorage</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        BrowserFS.FileSystem.LocalStorage
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;backend&#47;localStorage.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../../../classes/BrowserFS/FileSystem.html'>BrowserFS.FileSystem</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <div class='note todo'>
+    <strong>TODO:</strong>
+    Pack names efficiently: Convert to UTF-8, then convert to a packed UTF-16 representation (each character is 2 bytes).
+  </div>
+  <div class='note todo'>
+    <strong>TODO:</strong>
+    Store directory information explicitly. Could do something cool, like have directory information contain the keys for each subitem, where the key doesn&#39;t have to be the full-path. That would conserve space in localStorage.
+  </div>
+  <p>A simple filesystem backed by local storage.</p><p>Note that your program should only ever have one instance of this class.</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#constructor-instance'>
+        - (void) <strong>constructor</strong>()
+      </a>
+    </span>
+    <span class='constructor note title'>Constructor</span>
+    <span class='desc'>
+      Constructs the file system.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#_getFile-instance'>
+        - (BrowserFS.File.PreloadFile) <strong>_getFile</strong>(path, flags, inode)
+      </a>
+    </span>
+    <span class='desc'>
+      Retrieve the indicated file from <code>localStorage</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#_sync-instance'>
+        - (void) <strong>_sync</strong>(path, data, inode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      Handles syncing file data with <code>localStorage</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#empty-instance'>
+        - (void) <strong>empty</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Removes all data from localStorage.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isAvailable-instance'>
+        - (Boolean) <strong>isAvailable</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Does the browser support localStorage?
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#diskSpace-instance'>
+        - (void) <strong>diskSpace</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      Passes the size and taken space in bytes to the callback.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isReadOnly-instance'>
+        - (Boolean) <strong>isReadOnly</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns false; this filesystem is not read-only.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#supportsLinks-instance'>
+        - (Boolean) <strong>supportsLinks</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns false; this filesystem does not support symlinks.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#supportsProps-instance'>
+        - (Boolean) <strong>supportsProps</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns false; this filesystem does not support properties (yet).
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rename-instance'>
+        - (void) <strong>rename</strong>(oldPath, newPath, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#stat-instance'>
+        - (void) <strong>stat</strong>(path, isLstat, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#open-instance'>
+        - (void) <strong>open</strong>(path, flags, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#unlink-instance'>
+        - (void) <strong>unlink</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rmdir-instance'>
+        - (void) <strong>rmdir</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#mkdir-instance'>
+        - (void) <strong>mkdir</strong>(path, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readdir-instance'>
+        - (void) <strong>readdir</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../../../classes/BrowserFS/FileSystem.html'>BrowserFS.FileSystem</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../../../classes/BrowserFS/FileSystem.html#constructor-instance'>#constructor</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#isAvailable-instance'>#isAvailable</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#diskSpace-instance'>#diskSpace</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#isReadOnly-instance'>#isReadOnly</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#supportsLinks-instance'>#supportsLinks</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#supportsProps-instance'>#supportsProps</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#supportsSynch-instance'>#supportsSynch</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#rename-instance'>#rename</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#stat-instance'>#stat</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#open-instance'>#open</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#unlink-instance'>#unlink</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#rmdir-instance'>#rmdir</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#mkdir-instance'>#mkdir</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#readdir-instance'>#readdir</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#exists-instance'>#exists</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#realpath-instance'>#realpath</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#truncate-instance'>#truncate</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#readFile-instance'>#readFile</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#writeFile-instance'>#writeFile</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#appendFile-instance'>#appendFile</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#chmod-instance'>#chmod</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#chown-instance'>#chown</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#utimes-instance'>#utimes</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#link-instance'>#link</a>,
+                <a href='../../../classes/BrowserFS/FileSystem.html#symlink-instance'>#symlink</a>,
+        <a href='../../../classes/BrowserFS/FileSystem.html#readlink-instance'>#readlink</a>
+      </p>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-instance'>
+      - (void) <strong>constructor</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Constructs the file system. Loads up any existing files stored in local
+storage into a simple file index.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='_getFile-instance'>
+      - (BrowserFS.File.PreloadFile) <strong>_getFile</strong>(path, flags, inode)
+    </p>
+    <div class='docstring'>
+  <p>Retrieve the indicated file from <code>localStorage</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>flags</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/FileMode.html'>BrowserFS.FileMode</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>inode</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/FileInode.html'>BrowserFS.FileInode</a></tt>)
+      </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt><a href='../../../classes/BrowserFS/File/PreloadFile.html'>BrowserFS.File.PreloadFile</a></tt>)
+      &mdash;
+      <span class='desc'>Returns a preload file with the file&#39;s contents, or null if it does not exist.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='_sync-instance'>
+      - (void) <strong>_sync</strong>(path, data, inode, cb)
+    </p>
+    <div class='docstring'>
+  <p>Handles syncing file data with <code>localStorage</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>inode</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/FileInode.html'>BrowserFS.FileInode</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='empty-instance'>
+      - (void) <strong>empty</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Removes all data from localStorage.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isAvailable-instance'>
+      - (Boolean) <strong>isAvailable</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Does the browser support localStorage?</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='diskSpace-instance'>
+      - (void) <strong>diskSpace</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <p>Passes the size and taken space in bytes to the callback.</p><p><strong>Note</strong>: We assume that <code>localStorage</code> stores 5MB of data, but that is not
+always true.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Unused in the implementation.</span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(Number, Number)</tt>)
+      </span>
+    </li>
+  </ul>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='http://dev-test.nemikor.com/web-storage/support-test/'>http:&#47;&#47;dev-test.nemikor.com&#47;web-storage&#47;support-test&#47;</a>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isReadOnly-instance'>
+      - (Boolean) <strong>isReadOnly</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns false; this filesystem is not read-only.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='supportsLinks-instance'>
+      - (Boolean) <strong>supportsLinks</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns false; this filesystem does not support symlinks.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='supportsProps-instance'>
+      - (Boolean) <strong>supportsProps</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns false; this filesystem does not support properties (yet).</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rename-instance'>
+      - (void) <strong>rename</strong>(oldPath, newPath, cb)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='stat-instance'>
+      - (void) <strong>stat</strong>(path, isLstat, cb)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='open-instance'>
+      - (void) <strong>open</strong>(path, flags, mode, cb)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='unlink-instance'>
+      - (void) <strong>unlink</strong>(path, cb)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rmdir-instance'>
+      - (void) <strong>rmdir</strong>(path, cb)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='mkdir-instance'>
+      - (void) <strong>mkdir</strong>(path, mode, cb)
+    </p>
+    <div class='docstring'>
+  <div class='note todo'>
+    <strong>TODO:</strong>
+    Add empty directories to <code>localStorage</code> somehow.
+  </div>
+  
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readdir-instance'>
+      - (void) <strong>readdir</strong>(path, cb)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

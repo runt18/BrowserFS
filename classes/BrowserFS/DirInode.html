@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='../../assets/codo.css' type='text/css'>
+  <script src='../../assets/codo.js'></script>
+  <script src='../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <a href='../../classes/BrowserFS.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <span class='title'>DirInode</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        BrowserFS.DirInode
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;generic&#47;file_index.coffee</td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Inode for a directory. Currently only contains the directory listing.</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#constructor-instance'>
+        - (void) <strong>constructor</strong>()
+      </a>
+    </span>
+    <span class='constructor note title'>Constructor</span>
+    <span class='desc'>
+      Constructs an inode for a directory.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isFile-instance'>
+        - (Boolean) <strong>isFile</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Is this an inode for a file?
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getStats-instance'>
+        - (BrowserFS.node.fs.Stats) <strong>getStats</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Return a Stats object for this inode.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getListing-instance'>
+        - (String[) <strong>getListing</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns the directory listing for this directory.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getItem-instance'>
+        - (BrowserFS.FileInode | BrowserFS.DirInode | null) <strong>getItem</strong>(p)
+      </a>
+    </span>
+    <span class='desc'>
+      Returns the inode for the indicated item, or null if it does not exist.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#addItem-instance'>
+        - (Boolean) <strong>addItem</strong>(p, inode)
+      </a>
+    </span>
+    <span class='desc'>
+      Add the given item to the directory listing.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#remItem-instance'>
+        - (BrowserFS.FileInode | BrowserFS.DirInode | null) <strong>remItem</strong>(p)
+      </a>
+    </span>
+    <span class='desc'>
+      Removes the given item from the directory listing.
+    </span>
+  </li>
+</ul>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-instance'>
+      - (void) <strong>constructor</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Constructs an inode for a directory.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='isFile-instance'>
+      - (Boolean) <strong>isFile</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Is this an inode for a file?</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>false</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getStats-instance'>
+      - (BrowserFS.node.fs.Stats) <strong>getStats</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Return a Stats object for this inode.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt><a href='../../classes/BrowserFS/node/fs/Stats.html'>BrowserFS.node.fs.Stats</a></tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getListing-instance'>
+      - (String[) <strong>getListing</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns the directory listing for this directory. Paths in the directory are
+relative to the directory&#39;s path.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>String[</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getItem-instance'>
+      - (BrowserFS.FileInode | BrowserFS.DirInode | null) <strong>getItem</strong>(p)
+    </p>
+    <div class='docstring'>
+  <p>Returns the inode for the indicated item, or null if it does not exist.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>p</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Name of item in this directory.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>BrowserFS.FileInode | BrowserFS.DirInode | null</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='addItem-instance'>
+      - (Boolean) <strong>addItem</strong>(p, inode)
+    </p>
+    <div class='docstring'>
+  <p>Add the given item to the directory listing. Note that the given inode is
+not copied, and will be mutated by the DirInode if it is a DirInode.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>p</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Item name to add to the directory listing.</span>
+    </li>
+    <li>
+      <span class='name'>The</span>
+      <span class='type'>
+        (<tt>BrowserFS.FileInode | BrowserFS.DirInode</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>inode for the item to add to the directory inode.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>True if it was added, false if it already existed.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='remItem-instance'>
+      - (BrowserFS.FileInode | BrowserFS.DirInode | null) <strong>remItem</strong>(p)
+    </p>
+    <div class='docstring'>
+  <p>Removes the given item from the directory listing.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>p</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Name of item to remove from the directory listing.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>BrowserFS.FileInode | BrowserFS.DirInode | null</tt>)
+      &mdash;
+      <span class='desc'>Returns the item removed, or null if the item did not exist.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

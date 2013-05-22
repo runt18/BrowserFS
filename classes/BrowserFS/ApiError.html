@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='../../assets/codo.css' type='text/css'>
+  <script src='../../assets/codo.js'></script>
+  <script src='../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <a href='../../classes/BrowserFS.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <span class='title'>ApiError</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        BrowserFS.ApiError
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;core&#47;api_error.coffee</td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <div class='note todo'>
+    <strong>TODO:</strong>
+    Am I too tightly binding to the Dropbox API?
+  </div>
+  <p>Information about a failed call to the BrowserFS API.</p><p>Special thanks to Dropbox-JS for some of the error names/descriptions.</p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='https://raw.github.com/dropbox/dropbox-js/master/src/api_error.coffee'>https:&#47;&#47;raw.github.com&#47;dropbox&#47;dropbox-js&#47;master&#47;src&#47;api_error.coffee</a>
+    </li>
+  </ul>
+</div>
+      <h2>Constant Summary</h2>
+      <dl class='constants'>
+        <dt id='NETWORK_ERROR-constant'>
+          NETWORK_ERROR
+          =
+          <div class='docstring'>
+  <p>Status value indicating an error at the XMLHttpRequest layer.</p><p>This indicates a network transmission error on modern browsers. Internet
+Explorer might cause this code to be reported on some API server errors.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>0</code></pre>
+        </dd>
+        <dt id='INVALID_PARAM-constant'>
+          INVALID_PARAM
+          =
+          <div class='docstring'>
+  <p>Status value indicating an invalid input parameter.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>400</code></pre>
+        </dd>
+        <dt id='INVALID_TOKEN-constant'>
+          INVALID_TOKEN
+          =
+          <div class='docstring'>
+  <p>Status value indicating an expired or invalid OAuth token.</p><p>The OAuth token used for the request will never become valid again, so the
+user should be re-authenticated.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>401</code></pre>
+        </dd>
+        <dt id='AUTH_ERROR-constant'>
+          AUTH_ERROR
+          =
+          <div class='docstring'>
+  <p>Status value indicating an authentication error of some sort.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>403</code></pre>
+        </dd>
+        <dt id='NOT_FOUND-constant'>
+          NOT_FOUND
+          =
+          <div class='docstring'>
+  <p>Status value indicating that a file or path was not found in the filesystem.</p><p>This happens when trying to read from a non-existing file, readdir a
+non-existing directory, write a file into a non-existing directory, etc.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>404</code></pre>
+        </dd>
+        <dt id='DRIVE_FULL-constant'>
+          DRIVE_FULL
+          =
+          <div class='docstring'>
+  <p>Status value indicating that the filesystem is full to capacity.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>507</code></pre>
+        </dd>
+        <dt id='NOT_SUPPORTED-constant'>
+          NOT_SUPPORTED
+          =
+          <div class='docstring'>
+  <p>Indicates that the given method is not supported on the current filesystem.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>405</code></pre>
+        </dd>
+        <dt id='PERMISSIONS_ERROR-constant'>
+          PERMISSIONS_ERROR
+          =
+          <div class='docstring'>
+  <p>Indicates that you lack sufficient permissions to perform the indicated
+task. This could be due to a filemode error.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>900</code></pre>
+        </dd>
+      </dl>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#constructor-instance'>
+        - (void) <strong>constructor</strong>(type, message = "")
+      </a>
+    </span>
+    <span class='constructor note title'>Constructor</span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#toString-instance'>
+        - (String) <strong>toString</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+</ul>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-instance'>
+      - (void) <strong>constructor</strong>(type, message = "")
+    </p>
+    <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>type</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The type of error. Use one of the static fields of this class as the type.</span>
+    </li>
+    <li>
+      <span class='name'>message</span>
+      <span class='type'>
+        (<tt>String?</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A descriptive error message.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='toString-instance'>
+      - (String) <strong>toString</strong>()
+    </p>
+    <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>String</tt>)
+      &mdash;
+      <span class='desc'>A friendly error message.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

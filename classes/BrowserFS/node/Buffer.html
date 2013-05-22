@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='../../../assets/codo.css' type='text/css'>
+  <script src='../../../assets/codo.js'></script>
+  <script src='../../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../../README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <a href='../../../classes/BrowserFS.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <span class='title'>node</span>
+    &raquo;
+    <span class='title'>Buffer</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        BrowserFS.node.Buffer
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;core&#47;buffer.coffee</td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <div class='note todo'>
+    <strong>TODO:</strong>
+    Add option to add array accessors, if someone doesn&#39;t mind the <em>huge</em> speed hit for compatibility.
+  </div>
+  <p>Emulation of Node&#39;s <code>Buffer</code> class. Normally, this is declared globally, but I
+make that behavior optional.</p><p>The buffer is backed by a <code>DataView</code>; we have a polyfill in <code>vendor</code> that
+handles compatibility for us.</p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='http://nodejs.org/api/buffer.html'>http:&#47;&#47;nodejs.org&#47;api&#47;buffer.html</a>
+    </li>
+  </ul>
+</div>
+      <h2>Class Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#isEncoding-class'>
+        + (Boolean) <strong>isEncoding</strong>(enc)
+      </a>
+    </span>
+    <span class='desc'>
+      Checks if enc is a valid string encoding type.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isBuffer-class'>
+        + (Boolean) <strong>isBuffer</strong>(obj)
+      </a>
+    </span>
+    <span class='desc'>
+      Tests if obj is a Buffer.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#byteLength-class'>
+        + (Number) <strong>byteLength</strong>(str, encoding = 'utf8')
+      </a>
+    </span>
+    <span class='desc'>
+      Gives the actual byte length of a string.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#concat-class'>
+        + (BrowserFS.node.Buffer) <strong>concat</strong>(list, totalLength)
+      </a>
+    </span>
+    <span class='desc'>
+      Returns a buffer which is the result of concatenating all the buffers in the list together.
+    </span>
+  </li>
+</ul>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#constructor-instance'>
+        - (void) <strong>constructor</strong>(arg1, arg2 = 'utf8')
+      </a>
+    </span>
+    <span class='constructor note title'>Constructor</span>
+    <span class='desc'>
+      Constructs a buffer.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#set-instance'>
+        - (void) <strong>set</strong>(index, value)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>NONSTANDARD</strong>: Set the octet at index.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get-instance'>
+        - (Number) <strong>get</strong>(index)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>NONSTANDARD</strong>: Get the octet at index.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#write-instance'>
+        - (Number) <strong>write</strong>(str, offset = 0, length = @length, encoding = 'utf8')
+      </a>
+    </span>
+    <span class='desc'>
+      Writes string to the buffer at offset using the given encoding.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#toString-instance'>
+        - (String) <strong>toString</strong>(encoding = 'utf8', start = 0, end = @length)
+      </a>
+    </span>
+    <span class='desc'>
+      Decodes a portion of the Buffer into a String.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#toJSON-instance'>
+        - (Object) <strong>toJSON</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns a JSON-representation of the Buffer instance, which is identical to the output for JSON Arrays.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#copy-instance'>
+        - (Number) <strong>copy</strong>(target, targetStart = 0, sourceStart = 0, sourceEnd = @length)
+      </a>
+    </span>
+    <span class='desc'>
+      Does copy between buffers.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#slice-instance'>
+        - (BrowserFS.node.Buffer) <strong>slice</strong>(start = 0, end = @length)
+      </a>
+    </span>
+    <span class='desc'>
+      Returns a slice of this buffer.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fill-instance'>
+        - (void) <strong>fill</strong>(value, offset = 0, end = @length)
+      </a>
+    </span>
+    <span class='desc'>
+      Fills the buffer with the specified value.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readUInt8-instance'>
+        - (void) <strong>readUInt8</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readUInt16LE-instance'>
+        - (void) <strong>readUInt16LE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readUInt16BE-instance'>
+        - (void) <strong>readUInt16BE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readUInt32LE-instance'>
+        - (void) <strong>readUInt32LE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readUInt32BE-instance'>
+        - (void) <strong>readUInt32BE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readInt8-instance'>
+        - (void) <strong>readInt8</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readInt16LE-instance'>
+        - (void) <strong>readInt16LE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readInt16BE-instance'>
+        - (void) <strong>readInt16BE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readInt32LE-instance'>
+        - (void) <strong>readInt32LE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readInt32BE-instance'>
+        - (void) <strong>readInt32BE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readFloatLE-instance'>
+        - (void) <strong>readFloatLE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readFloatBE-instance'>
+        - (void) <strong>readFloatBE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readDoubleLE-instance'>
+        - (void) <strong>readDoubleLE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readDoubleBE-instance'>
+        - (void) <strong>readDoubleBE</strong>(offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeUInt8-instance'>
+        - (void) <strong>writeUInt8</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeUInt16LE-instance'>
+        - (void) <strong>writeUInt16LE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeUInt16BE-instance'>
+        - (void) <strong>writeUInt16BE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeUInt32LE-instance'>
+        - (void) <strong>writeUInt32LE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeUInt32BE-instance'>
+        - (void) <strong>writeUInt32BE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeInt8-instance'>
+        - (void) <strong>writeInt8</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeInt16LE-instance'>
+        - (void) <strong>writeInt16LE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeInt16BE-instance'>
+        - (void) <strong>writeInt16BE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeInt32LE-instance'>
+        - (void) <strong>writeInt32LE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeInt32BE-instance'>
+        - (void) <strong>writeInt32BE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeFloatLE-instance'>
+        - (void) <strong>writeFloatLE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeFloatBE-instance'>
+        - (void) <strong>writeFloatBE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeDoubleLE-instance'>
+        - (void) <strong>writeDoubleLE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeDoubleBE-instance'>
+        - (void) <strong>writeDoubleBE</strong>(value, offset, noAssert = false)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+</ul>
+      <h2>Class Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='isEncoding-class'>
+      + (Boolean) <strong>isEncoding</strong>(enc)
+    </p>
+    <div class='docstring'>
+  <p>Checks if enc is a valid string encoding type.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>enc</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Name of a string encoding type.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>Whether or not enc is a valid encoding type.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isBuffer-class'>
+      + (Boolean) <strong>isBuffer</strong>(obj)
+    </p>
+    <div class='docstring'>
+  <p>Tests if obj is a Buffer.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>obj</span>
+      <span class='type'>
+        (<tt>Object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>An arbitrary object</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>True if this object is a Buffer.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='byteLength-class'>
+      + (Number) <strong>byteLength</strong>(str, encoding = 'utf8')
+    </p>
+    <div class='docstring'>
+  <p>Gives the actual byte length of a string. This is not the same as
+String.prototype.length since that returns the number of characters in a
+string.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>str</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The string to get the byte length of</span>
+    </li>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>?String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Character encoding of the string</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>The number of bytes in the string</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='concat-class'>
+      + (BrowserFS.node.Buffer) <strong>concat</strong>(list, totalLength)
+    </p>
+    <div class='docstring'>
+  <p>Returns a buffer which is the result of concatenating all the buffers in the
+list together.
+If the list has no items, or if the totalLength is 0, then it returns a
+zero-length buffer.
+If the list has exactly one item, then the first item of the list is
+returned.
+If the list has more than one item, then a new Buffer is created.
+If totalLength is not provided, it is read from the buffers in the list.
+However, this adds an additional loop to the function, so it is faster to
+provide the length explicitly.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>list</span>
+      <span class='type'>
+        (<tt>Array</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>List of Buffer objects to concat</span>
+    </li>
+    <li>
+      <span class='name'>totalLength</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Total length of the buffers when concatenated</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt><a href='../../../classes/BrowserFS/node/Buffer.html'>BrowserFS.node.Buffer</a></tt></li>
+  </ul>
+</div>
+  </div>
+</div>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-instance'>
+      - (void) <strong>constructor</strong>(arg1, arg2 = 'utf8')
+    </p>
+    <div class='docstring'>
+  <p>Constructs a buffer.
+                             from the indicated Array or String.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>arg1</span>
+      <span class='type'>
+        (<tt>Number, Array, String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Instantiate a buffer of the indicated size, or</span>
+    </li>
+    <li>
+      <span class='name'>arg2</span>
+      <span class='type'>
+        (<tt>?String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Encoding to use if arg1 is a string</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='set-instance'>
+      - (void) <strong>set</strong>(index, value)
+    </p>
+    <div class='docstring'>
+  <p><strong>NONSTANDARD</strong>: Set the octet at index. The values refer to individual
+bytes, so the legal range is between 0x00 and 0xFF hex or 0 and 255.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>index</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>the index to set the value at</span>
+    </li>
+    <li>
+      <span class='name'>value</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>the value to set at the given index</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get-instance'>
+      - (Number) <strong>get</strong>(index)
+    </p>
+    <div class='docstring'>
+  <p><strong>NONSTANDARD</strong>: Get the octet at index.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>index</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>index to fetch the value at</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>the value at the given index</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='write-instance'>
+      - (Number) <strong>write</strong>(str, offset = 0, length = @length, encoding = 'utf8')
+    </p>
+    <div class='docstring'>
+  <p>Writes string to the buffer at offset using the given encoding.
+If buffer did not contain enough space to fit the entire string, it will
+write a partial amount of the string.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>str</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Data to be written to buffer</span>
+    </li>
+    <li>
+      <span class='name'>offset</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Offset in the buffer to write to</span>
+    </li>
+    <li>
+      <span class='name'>length</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Number of bytes to write</span>
+    </li>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>?String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Character encoding</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Number of octets written.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='toString-instance'>
+      - (String) <strong>toString</strong>(encoding = 'utf8', start = 0, end = @length)
+    </p>
+    <div class='docstring'>
+  <p>Decodes a portion of the Buffer into a String.
+at start, and ending at end.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>?String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Character encoding to decode to</span>
+    </li>
+    <li>
+      <span class='name'>start</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Start position in the buffer</span>
+    </li>
+    <li>
+      <span class='name'>end</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Ending position in the buffer</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>String</tt>)
+      &mdash;
+      <span class='desc'>A string from buffer data encoded with encoding, beginning</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='toJSON-instance'>
+      - (Object) <strong>toJSON</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns a JSON-representation of the Buffer instance, which is identical to
+the output for JSON Arrays. JSON.stringify implicitly calls this function
+when stringifying a Buffer instance.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Object</tt>)
+      &mdash;
+      <span class='desc'>An object that can be used for JSON stringification.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='copy-instance'>
+      - (Number) <strong>copy</strong>(target, targetStart = 0, sourceStart = 0, sourceEnd = @length)
+    </p>
+    <div class='docstring'>
+  <p>Does copy between buffers. The source and target regions can be overlapped.
+All values passed that are undefined/NaN or are out of bounds are set equal
+to their respective defaults.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>target</span>
+      <span class='type'>
+        (<tt><a href='../../../classes/BrowserFS/node/Buffer.html'>BrowserFS.node.Buffer</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Buffer to copy into</span>
+    </li>
+    <li>
+      <span class='name'>targetStart</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Index to start copying to in the targetBuffer</span>
+    </li>
+    <li>
+      <span class='name'>sourceStart</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Index in this buffer to start copying from</span>
+    </li>
+    <li>
+      <span class='name'>sourceEnd</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Index in this buffer stop copying at</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>The number of bytes copied into the target buffer.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='slice-instance'>
+      - (BrowserFS.node.Buffer) <strong>slice</strong>(start = 0, end = @length)
+    </p>
+    <div class='docstring'>
+  <p>Returns a slice of this buffer.
+memory as the old, but offset and cropped by the start (defaults to 0) and
+end (defaults to buffer.length) indexes. Negative indexes start from the end
+of the buffer.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>start</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Index to start slicing from</span>
+    </li>
+    <li>
+      <span class='name'>end</span>
+      <span class='type'>
+        (<tt>?Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Index to stop slicing at</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt><a href='../../../classes/BrowserFS/node/Buffer.html'>BrowserFS.node.Buffer</a></tt>)
+      &mdash;
+      <span class='desc'>A new buffer which references the same</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fill-instance'>
+      - (void) <strong>fill</strong>(value, offset = 0, end = @length)
+    </p>
+    <div class='docstring'>
+  <p>Fills the buffer with the specified value. If the offset and end are not
+given it will fill the entire buffer.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>value</span>
+      <span class='type'>
+        (<tt>String, Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The value to fill the buffer with</span>
+    </li>
+    <li>
+      <span class='name'>offset</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Optional</span>
+    </li>
+    <li>
+      <span class='name'>end</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Optional</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readUInt8-instance'>
+      - (void) <strong>readUInt8</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readUInt16LE-instance'>
+      - (void) <strong>readUInt16LE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readUInt16BE-instance'>
+      - (void) <strong>readUInt16BE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readUInt32LE-instance'>
+      - (void) <strong>readUInt32LE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readUInt32BE-instance'>
+      - (void) <strong>readUInt32BE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readInt8-instance'>
+      - (void) <strong>readInt8</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readInt16LE-instance'>
+      - (void) <strong>readInt16LE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readInt16BE-instance'>
+      - (void) <strong>readInt16BE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readInt32LE-instance'>
+      - (void) <strong>readInt32LE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readInt32BE-instance'>
+      - (void) <strong>readInt32BE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readFloatLE-instance'>
+      - (void) <strong>readFloatLE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readFloatBE-instance'>
+      - (void) <strong>readFloatBE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readDoubleLE-instance'>
+      - (void) <strong>readDoubleLE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readDoubleBE-instance'>
+      - (void) <strong>readDoubleBE</strong>(offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeUInt8-instance'>
+      - (void) <strong>writeUInt8</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeUInt16LE-instance'>
+      - (void) <strong>writeUInt16LE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeUInt16BE-instance'>
+      - (void) <strong>writeUInt16BE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeUInt32LE-instance'>
+      - (void) <strong>writeUInt32LE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeUInt32BE-instance'>
+      - (void) <strong>writeUInt32BE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeInt8-instance'>
+      - (void) <strong>writeInt8</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeInt16LE-instance'>
+      - (void) <strong>writeInt16LE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeInt16BE-instance'>
+      - (void) <strong>writeInt16BE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeInt32LE-instance'>
+      - (void) <strong>writeInt32LE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeInt32BE-instance'>
+      - (void) <strong>writeInt32BE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeFloatLE-instance'>
+      - (void) <strong>writeFloatLE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeFloatBE-instance'>
+      - (void) <strong>writeFloatBE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeDoubleLE-instance'>
+      - (void) <strong>writeDoubleLE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeDoubleBE-instance'>
+      - (void) <strong>writeDoubleBE</strong>(value, offset, noAssert = false)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

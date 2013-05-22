@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='../../assets/codo.css' type='text/css'>
+  <script src='../../assets/codo.js'></script>
+  <script src='../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <a href='../../classes/BrowserFS.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <span class='title'>FileSystem</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        BrowserFS.FileSystem
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;core&#47;file_system.coffee</td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>The base FileSystem class. <strong>All</strong> BrowserFS FileSystems should extend this
+class.</p><p>Below, we denote each API method as <strong>Core</strong>, <strong>Supplemental</strong>, or
+<strong>Optional</strong>.</p><h3>Core Methods</h3><p><strong>Core</strong> API methods <em>need</em> to be implemented for basic read/write
+functionality.</p><p>Note that read-only FileSystems can choose to not implement core methods
+that mutate files or metadata. The default implementation will pass a
+NOT_SUPPORTED error to the callback.</p><h3>Supplemental Methods</h3><p><strong>Supplemental</strong> API methods do not need to be implemented by a filesystem.
+The default implementation implements all of the supplemental API methods in
+terms of the <strong>core</strong> API methods.</p><p>Note that a file system may choose to implement supplemental methods for
+efficiency reasons.</p><p>The code for some supplemental methods was adapted directly from NodeJS&#39;s
+fs.js source code.</p><h3>Optional Methods</h3><p><strong>Optional</strong> API methods provide functionality that may not be available in
+all filesystems. For example, all symlink/hardlink-related API methods fall
+under this category.</p><p>The default implementation will pass a NOT_SUPPORTED error to the callback.</p><h3>Argument Assumptions</h3><p>You can assume the following about arguments passed to each API method:</p><ul>
+<li><strong>Every path is an absolute path.</strong> Meaning, <code>.</code>, <code>..</code>, and other items are resolved into an absolute form.</li>
+<li><strong>All arguments are present.</strong> Any optional arguments at the Node API level have been passed in with their default values.</li>
+<li><strong>The callback will reset the stack depth.</strong> When your filesystem calls the callback with the requested information, it will use <code>setImmediate</code> to reset the JavaScript stack depth before calling the user-supplied callback.</li>
+</ul>
+
+</div>
+<div class='tags'>
+</div>
+      <h2>Direct Known Subclasses</h2>
+      <p class='children'>
+        <a href='../../classes/BrowserFS/FileSystem/LocalStorage.html'>BrowserFS.FileSystem.LocalStorage</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#constructor-instance'>
+        - (void) <strong>constructor</strong>()
+      </a>
+    </span>
+    <span class='constructor note title'>Constructor</span>
+    <span class='desc'>
+      Constructs the file system.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isAvailable-instance'>
+        - (Boolean) <strong>isAvailable</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Returns &#39;true&#39; if this filesystem is available in the current environment.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#diskSpace-instance'>
+        - (void) <strong>diskSpace</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Passes the following information to the callback: * Total number of bytes available on this file system.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isReadOnly-instance'>
+        - (Boolean) <strong>isReadOnly</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Is this filesystem read-only?
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#supportsLinks-instance'>
+        - (Boolean) <strong>supportsLinks</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Does the filesystem support optional symlink/hardlink-related commands?
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#supportsProps-instance'>
+        - (Boolean) <strong>supportsProps</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Does the filesystem support optional property-related commands?
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#supportsSynch-instance'>
+        - (Boolean) <strong>supportsSynch</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Does the filesystem support the optional synchronous interface?
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rename-instance'>
+        - (void) <strong>rename</strong>(oldPath, newPath, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous rename.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#stat-instance'>
+        - (void) <strong>stat</strong>(path, isLstat, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous <code>stat</code> or <code>lstat</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#open-instance'>
+        - (void) <strong>open</strong>(path, flags, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous file open.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#unlink-instance'>
+        - (void) <strong>unlink</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous <code>unlink</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rmdir-instance'>
+        - (void) <strong>rmdir</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous <code>rmdir</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#mkdir-instance'>
+        - (void) <strong>mkdir</strong>(path, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous <code>mkdir</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readdir-instance'>
+        - (void) <strong>readdir</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Core</strong>: Asynchronous <code>readdir</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#exists-instance'>
+        - (void) <strong>exists</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Supplemental</strong>: Test whether or not the given path exists by checking with the file system.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#realpath-instance'>
+        - (void) <strong>realpath</strong>(path, cache, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Supplemental</strong>: Asynchronous <code>realpath</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#truncate-instance'>
+        - (void) <strong>truncate</strong>(path, len, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Supplemental</strong>: Asynchronous <code>truncate</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readFile-instance'>
+        - (void) <strong>readFile</strong>(fname, encoding, flag, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Supplemental</strong>: Asynchronously reads the entire contents of a file.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#writeFile-instance'>
+        - (void) <strong>writeFile</strong>(fname, data, encoding, flag, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Supplemental</strong>: Asynchronously writes data to a file, replacing the file if it already exists.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#appendFile-instance'>
+        - (void) <strong>appendFile</strong>(fname, data, encoding, flag, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Supplemental</strong>: Asynchronously append data to a file, creating the file if it not yet exists.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#chmod-instance'>
+        - (void) <strong>chmod</strong>(path, isLchmod, mode, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Asynchronous <code>chmod</code> or <code>lchmod</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#chown-instance'>
+        - (void) <strong>chown</strong>(path, isLchown, uid, gid, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Asynchronous <code>chown</code> or <code>lchown</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#utimes-instance'>
+        - (void) <strong>utimes</strong>(path, atime, mtime, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Change file timestamps of the file referenced by the supplied path.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#link-instance'>
+        - (void) <strong>link</strong>(srcpath, dstpath, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Asynchronous <code>link</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#symlink-instance'>
+        - (void) <strong>symlink</strong>(srcpath, dstpath, type, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Asynchronous <code>symlink</code>.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#readlink-instance'>
+        - (void) <strong>readlink</strong>(path, cb)
+      </a>
+    </span>
+    <span class='desc'>
+      <strong>Optional</strong>: Asynchronous readlink.
+    </span>
+  </li>
+</ul>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-instance'>
+      - (void) <strong>constructor</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Constructs the file system. Doesn&#39;t do anything particularly special.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='isAvailable-instance'>
+      - (Boolean) <strong>isAvailable</strong>()
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Returns &#39;true&#39; if this filesystem is available in the current
+environment. For example, a <code>localStorage</code>-backed filesystem will return
+&#39;false&#39; if the browser does not support that API.</p><p>Defaults to &#39;false&#39;, as the FileSystem base class isn&#39;t usable alone.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='diskSpace-instance'>
+      - (void) <strong>diskSpace</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <div class='note todo'>
+    <strong>TODO:</strong>
+    This info is not available through the Node API. Perhaps we could do a polyfill of diskspace.js, or add a new Node API function.
+  </div>
+  <p><strong>Optional</strong>: Passes the following information to the callback:</p><ul>
+<li>Total number of bytes available on this file system.</li>
+<li>Number of free bytes available on this file system.</li>
+</ul>
+
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The path to the location that is being queried. Only useful for filesystems that support mount points.</span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(Number, Number)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isReadOnly-instance'>
+      - (Boolean) <strong>isReadOnly</strong>()
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Is this filesystem read-only?</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>True if this FileSystem is inherently read-only.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='supportsLinks-instance'>
+      - (Boolean) <strong>supportsLinks</strong>()
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Does the filesystem support optional symlink/hardlink-related commands?</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>True if the FileSystem supports the optional symlink/hardlink-related commands.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='supportsProps-instance'>
+      - (Boolean) <strong>supportsProps</strong>()
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Does the filesystem support optional property-related commands?</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>True if the FileSystem supports the optional property-related commands (permissions, utimes, etc).</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='supportsSynch-instance'>
+      - (Boolean) <strong>supportsSynch</strong>()
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Does the filesystem support the optional synchronous interface?</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Boolean</tt>)
+      &mdash;
+      <span class='desc'>True if the FileSystem supports synchronous operations.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rename-instance'>
+      - (void) <strong>rename</strong>(oldPath, newPath, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous rename. No arguments other than a possible exception
+are given to the completion callback.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>oldPath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>newPath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='stat-instance'>
+      - (void) <strong>stat</strong>(path, isLstat, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous <code>stat</code> or <code>lstat</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>isLstat</span>
+      <span class='type'>
+        (<tt>Boolean</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>True if this is <code>lstat</code>, false if this is regular <code>stat</code>.</span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, BrowserFS.node.fs.Stats)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='open-instance'>
+      - (void) <strong>open</strong>(path, flags, mode, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous file open.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>flags</span>
+      <span class='type'>
+        (<tt><a href='../../classes/BrowserFS/FileMode.html'>BrowserFS.FileMode</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Handles the complexity of the various file modes. See its API for more details.</span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Mode to use to open the file. Can be ignored if the filesystem doesn&#39;t support permissions.</span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, BrowserFS.File)</tt>)
+      </span>
+    </li>
+  </ul>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='http://www.manpagez.com/man/2/open/'>http:&#47;&#47;www.manpagez.com&#47;man&#47;2&#47;open&#47;</a>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='unlink-instance'>
+      - (void) <strong>unlink</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous <code>unlink</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rmdir-instance'>
+      - (void) <strong>rmdir</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous <code>rmdir</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='mkdir-instance'>
+      - (void) <strong>mkdir</strong>(path, mode, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous <code>mkdir</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number?</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Mode to make the directory using. Can be ignored if the filesystem doesn&#39;t support permissions.</span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readdir-instance'>
+      - (void) <strong>readdir</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Core</strong>: Asynchronous <code>readdir</code>. Reads the contents of a directory.</p><p>The callback gets two arguments <code>(err, files)</code> where <code>files</code> is an array of
+the names of the files in the directory excluding <code>&#39;.&#39;</code> and <code>&#39;..&#39;</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String[])</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='exists-instance'>
+      - (void) <strong>exists</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Supplemental</strong>: Test whether or not the given path exists by checking with
+the file system. Then call the callback argument with either true or false.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(Boolean)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='realpath-instance'>
+      - (void) <strong>realpath</strong>(path, cache, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Supplemental</strong>: Asynchronous <code>realpath</code>. The callback gets two arguments
+<code>(err, resolvedPath)</code>.</p><p>Note that the Node API will resolve <code>path</code> to an absolute path.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cache</span>
+      <span class='type'>
+        (<tt>Object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>An object literal of mapped paths that can be used to force a specific path resolution or avoid additional <code>fs.stat</code> calls for known real paths. If not supplied by the user, it&#39;ll be an empty object.</span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='truncate-instance'>
+      - (void) <strong>truncate</strong>(path, len, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Supplemental</strong>: Asynchronous <code>truncate</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>len</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readFile-instance'>
+      - (void) <strong>readFile</strong>(fname, encoding, flag, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Supplemental</strong>: Asynchronously reads the entire contents of a file.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>filename</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>If non-null, the file&#39;s contents should be decoded into a string using that encoding. Otherwise, if encoding is null, fetch the file&#39;s contents as a Buffer.</span>
+    </li>
+    <li>
+      <span class='name'>flag</span>
+      <span class='type'>
+        (<tt><a href='../../classes/BrowserFS/FileMode.html'>BrowserFS.FileMode</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String | BrowserFS.node.Buffer)</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>If no encoding is specified, then the raw buffer is returned.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='writeFile-instance'>
+      - (void) <strong>writeFile</strong>(fname, data, encoding, flag, mode, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Supplemental</strong>: Asynchronously writes data to a file, replacing the file
+if it already exists.</p><p>The encoding option is ignored if data is a buffer.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>filename</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>String | BrowserFS.node.Buffer</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>flag</span>
+      <span class='type'>
+        (<tt><a href='../../classes/BrowserFS/FileMode.html'>BrowserFS.FileMode</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='appendFile-instance'>
+      - (void) <strong>appendFile</strong>(fname, data, encoding, flag, mode, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Supplemental</strong>: Asynchronously append data to a file, creating the file if
+it not yet exists.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>filename</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>String | BrowserFS.node.Buffer</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>encoding</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>flag</span>
+      <span class='type'>
+        (<tt><a href='../../classes/BrowserFS/FileMode.html'>BrowserFS.FileMode</a></tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='chmod-instance'>
+      - (void) <strong>chmod</strong>(path, isLchmod, mode, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Optional</strong>: Asynchronous <code>chmod</code> or <code>lchmod</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>isLchmod</span>
+      <span class='type'>
+        (<tt>Boolean</tt>)
+      </span>
+      &mdash;
+      <span class='desc'><code>True</code> if <code>lchmod</code>, false if <code>chmod</code>. Has no bearing on result if links aren&#39;t supported.</span>
+    </li>
+    <li>
+      <span class='name'>mode</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='chown-instance'>
+      - (void) <strong>chown</strong>(path, isLchown, uid, gid, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Optional</strong>: Asynchronous <code>chown</code> or <code>lchown</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>isLchown</span>
+      <span class='type'>
+        (<tt>Boolean</tt>)
+      </span>
+      &mdash;
+      <span class='desc'><code>True</code> if <code>lchown</code>, false if <code>chown</code>. Has no bearing on result if links aren&#39;t supported.</span>
+    </li>
+    <li>
+      <span class='name'>uid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>gid</span>
+      <span class='type'>
+        (<tt>Number</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='utimes-instance'>
+      - (void) <strong>utimes</strong>(path, atime, mtime, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Optional</strong>: Change file timestamps of the file referenced by the supplied
+path.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>atime</span>
+      <span class='type'>
+        (<tt>Date</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>mtime</span>
+      <span class='type'>
+        (<tt>Date</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='link-instance'>
+      - (void) <strong>link</strong>(srcpath, dstpath, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Optional</strong>: Asynchronous <code>link</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>srcpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>dstpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='symlink-instance'>
+      - (void) <strong>symlink</strong>(srcpath, dstpath, type, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Optional</strong>: Asynchronous <code>symlink</code>.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>srcpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>dstpath</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>type</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>can be either <code>&#39;dir&#39;</code> or <code>&#39;file&#39;</code></span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='readlink-instance'>
+      - (void) <strong>readlink</strong>(path, cb)
+    </p>
+    <div class='docstring'>
+  <p><strong>Optional</strong>: Asynchronous readlink.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>path</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>Function(BrowserFS.ApiError, String)</tt>)
+      </span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

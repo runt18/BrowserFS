@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>BrowserFS Documentation</title>
+  <link rel='stylesheet' href='assets/codo.css' type='text/css'>
+  <script src='assets/codo.js'></script>
+  <script src='assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path=''></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='README.md.html' title='BrowserFS'>BrowserFS</a>
+    &raquo;
+    <a href='class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>README.md</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='class_list.html'>Classes</a>
+      <a id='file_list_link' href='file_list.html'>Files</a>
+      <a id='method_list_link' href='method_list.html'>Methods</a>
+      <a id='extra_list_link' href='extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <nav class='toc'>
+        <p class='title'>
+          <a class='hide_toc' href='#'>
+            <strong>Table of Contents</strong>
+          </a>
+          <small>
+            (<a class='float_toc' href='#'>left</a>)
+          </small>
+        </p>
+      </nav>
+      <div id='filecontents'>
+        <h1>BrowserFS</h1><p>BrowserFS is an in-browser file system that emulates the Node JS file system API and supports storing and retrieving files from various backends. BrowserFS aims to support as many browsers as possible.</p><h2>Browser compatibility</h2><p>At the moment, BrowserFS has been tested to work in the latest version of the following browsers:</p><ul>
+<li>Chrome</li>
+<li>Firefox</li>
+<li>Safari</li>
+<li>Opera</li>
+</ul><p>We plan to test additional browsers soon, once we have a few fully-functioning backends in the above-listed browsers. Compatibility is an important goal for us.</p><p>However, note that not all file system backends support all browsers. For example, if the browser does not have <code>localStorage</code> support, the <code>localStorage</code> backend will not work properly. To check if a file system supports the current browser at runtime, use the <code>isAvailable</code> method on the file system.</p><p>Once we have a number of backends working, we will have composite backends that will dynamically fall back to the best-available backend for the current browser.</p><h2>Differences from Node</h2>
+<h3>API Differences</h3>
+<ul>
+<li>BrowserFS buffers cannot be read from or written to like arrays.<ul>
+<li>Equivalent to <code>buf[1] = 2</code>: <code>buf.writeUInt8(2,1)</code></li>
+<li>Equivalent to <code>a = buf[1]</code>: <code>buf.readUInt8(1)</code></li>
+</ul>
+</li>
+<li>BrowserFS buffers&#39; <code>read</code> and <code>write</code> functions do not support the optional <code>noAssert=true</code> parameter; they will always throw a <code>RangeError</code> if you attempt to read or write past the end of the buffer.</li>
+<li>BrowserFS only supports asynchronous Node API functions (synchronous support is coming soon -- although it will be an optional feature, as some backends are not amenable to synchronous operations).</li>
+<li>BrowserFS does not support watch/unwatch functionality.</li>
+<li>BrowserFS does not support Node&#39;s read or write stream objects.</li>
+<li>BrowserFS doesn&#39;t support the following NodeJS oddities:<ul>
+<li>Allowing number arguments to be passed as strings (e.g. &#39;2&#39; instead of 2).</li>
+<li>We do not support some undocumented API function signatures that Node maintains for backward compatibility purposes (if there is demand for fixing this, it can be fixed).</li>
+</ul>
+</li>
+</ul>
+<h3>File Descriptors</h3><p>In Node, a &#39;file descriptor&#39; is a typical integer-based POSIX file descriptor.</p><p>In BrowserFS, a file descriptor is an object. However, this will not impact your program&#39;s logic, unless your program actually reads the contents of the file descriptor. You will still pass it to the normal Node API methods, such as <code>fs.fstat()</code>. As long as you treat the file descriptor as an abstract token that you pass into the Node API, your program will work correctly.</p><h2>Why add a backend to BrowserFS?</h2><p>If you write a backend for BrowserFS, you get the following for free:</p><ul>
+<li><strong>Test Suite Support</strong>: BrowserFS contains a comprehensive test suite for each command type that can be run on any backend. The tests are configured to test only the commands that the backend under test supports (e.g. if your file system does not support permissions, the permission tests will detect this and automatically pass).</li>
+<li><strong>Node API Compatibility</strong>: BrowserFS handles translating the Node <code>fs</code> API, which has some optional arguments and default values for arguments, into a more concrete form where everything is explicitly specified. It also translates some Node functions as compositions of &quot;core&quot; Node <code>fs</code> functions, which reduces the number of methods you need to implement and test.</li>
+<li><em>[Planned for the future]</em> <strong>Cross filesystem support</strong>: BrowserFS will automatically handle operations that may span multiple filesystems. For example, if a user renames a file from <code>/mnt/dropbox/Foo.bar</code> to <code>/mnt/localStorage/Foo.bar</code>, BrowserFS will read the file from the Dropbox filesystem, write to the <code>localStorage</code> filesystem, and then delete it from the Dropbox filesystem. File systems do not need to know about each other.</li>
+<li><em>[Planned for the future]</em> <strong>WebWorker Support</strong>: BrowserFS will automatically proxy file operations across the WebWorker boundary with no individual filesystem support required.</li>
+</ul>
+<h2>Building BrowserFS</h2><p>Prerequisites:</p><ul>
+<li>GNU Make (tested with v3.81)</li>
+<li>Node and NPM (tested with v0.10.4)</li>
+<li>Typical Unix command-line tools (<code>find</code> and <code>dirname</code>)</li>
+</ul><p>Once you have the above prerequisites installed, type <code>make</code> to build BrowserFS. The minified library can then be found as <code>lib/browserfs.min.js</code>.</p><h2>Using BrowserFS</h2><p>To be written.</p><h2>How to add a backend to BrowserFS</h2><p>To be written, once I have <code>docs</code> up.</p>
+      </div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.6.1
+  (Node.js v0.10.4).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>
