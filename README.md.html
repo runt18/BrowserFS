@@ -115,48 +115,19 @@
         </p>
       </nav>
       <div id='filecontents'>
-        <h1>BrowserFS</h1><p>BrowserFS is an in-browser file system that emulates the Node JS file system API and supports storing and retrieving files from various backends. BrowserFS aims to support as many browsers as possible.</p><h2>Browser compatibility</h2><p>At the moment, BrowserFS has been tested to work in the latest version of the following browsers:</p><ul>
-<li>Chrome</li>
-<li>Firefox</li>
-<li>Safari</li>
-<li>Opera</li>
-</ul><p>We plan to test additional browsers soon, once we have a few fully-functioning backends in the above-listed browsers. Compatibility is an important goal for us.</p><p>However, note that not all file system backends support all browsers. For example, if the browser does not have <code>localStorage</code> support, the <code>localStorage</code> backend will not work properly. To check if a file system supports the current browser at runtime, use the <code>isAvailable</code> method on the file system.</p><p>Once we have a number of backends working, we will have composite backends that will dynamically fall back to the best-available backend for the current browser.</p><h2>Differences from Node</h2>
-<h3>API Differences</h3>
-<ul>
-<li>BrowserFS buffers cannot be read from or written to like arrays.<ul>
-<li>Equivalent to <code>buf[1] = 2</code>: <code>buf.writeUInt8(2,1)</code></li>
-<li>Equivalent to <code>a = buf[1]</code>: <code>buf.readUInt8(1)</code></li>
-</ul>
-</li>
-<li>BrowserFS buffers&#39; <code>read</code> and <code>write</code> functions do not support the optional <code>noAssert=true</code> parameter; they will always throw a <code>RangeError</code> if you attempt to read or write past the end of the buffer.</li>
-<li>BrowserFS only supports asynchronous Node API functions (synchronous support is coming soon -- although it will be an optional feature, as some backends are not amenable to synchronous operations).</li>
-<li>BrowserFS does not support watch/unwatch functionality.</li>
-<li>BrowserFS does not support Node&#39;s read or write stream objects.</li>
-<li>BrowserFS doesn&#39;t support the following NodeJS oddities:<ul>
-<li>Allowing number arguments to be passed as strings (e.g. &#39;2&#39; instead of 2).</li>
-<li>We do not support some undocumented API function signatures that Node maintains for backward compatibility purposes (if there is demand for fixing this, it can be fixed).</li>
-</ul>
-</li>
-</ul>
-<h3>File Descriptors</h3><p>In Node, a &#39;file descriptor&#39; is a typical integer-based POSIX file descriptor.</p><p>In BrowserFS, a file descriptor is an object. However, this will not impact your program&#39;s logic, unless your program actually reads the contents of the file descriptor. You will still pass it to the normal Node API methods, such as <code>fs.fstat()</code>. As long as you treat the file descriptor as an abstract token that you pass into the Node API, your program will work correctly.</p><h2>Why add a backend to BrowserFS?</h2><p>If you write a backend for BrowserFS, you get the following for free:</p><ul>
-<li><strong>Test Suite Support</strong>: BrowserFS contains a comprehensive test suite for each command type that can be run on any backend. The tests are configured to test only the commands that the backend under test supports (e.g. if your file system does not support permissions, the permission tests will detect this and automatically pass).</li>
-<li><strong>Node API Compatibility</strong>: BrowserFS handles translating the Node <code>fs</code> API, which has some optional arguments and default values for arguments, into a more concrete form where everything is explicitly specified. It also translates some Node functions as compositions of &quot;core&quot; Node <code>fs</code> functions, which reduces the number of methods you need to implement and test.</li>
-<li><em>[Planned for the future]</em> <strong>Cross filesystem support</strong>: BrowserFS will automatically handle operations that may span multiple filesystems. For example, if a user renames a file from <code>/mnt/dropbox/Foo.bar</code> to <code>/mnt/localStorage/Foo.bar</code>, BrowserFS will read the file from the Dropbox filesystem, write to the <code>localStorage</code> filesystem, and then delete it from the Dropbox filesystem. File systems do not need to know about each other.</li>
-<li><em>[Planned for the future]</em> <strong>WebWorker Support</strong>: BrowserFS will automatically proxy file operations across the WebWorker boundary with no individual filesystem support required.</li>
-</ul>
-<h2>Building BrowserFS</h2><p>Prerequisites:</p><ul>
+        <h1>BrowserFS</h1><p>BrowserFS is an in-browser file system that emulates the <a href="http://nodejs.org/api/fs.html">Node JS file system API</a> and supports storing and retrieving files from various backends.</p><p>For more information, see the <a href="https://github.com/jvilk/BrowserFS/wiki">wiki</a> and <a href="http://jvilk.github.io/BrowserFS/">API documentation</a>.</p><h3>Building</h3><p>Prerequisites:</p><ul>
 <li>GNU Make (tested with v3.81)</li>
 <li>Node and NPM (tested with v0.10.4)</li>
 <li>Typical Unix command-line tools (<code>find</code> and <code>dirname</code>)</li>
-</ul><p>Once you have the above prerequisites installed, type <code>make</code> to build BrowserFS. The minified library can then be found as <code>lib/browserfs.min.js</code>.</p><h2>Using BrowserFS</h2><p>To be written.</p><h2>How to add a backend to BrowserFS</h2><p>To be written, once I have <code>docs</code> up.</p>
+</ul><p>Once you have the above prerequisites installed, type <code>make</code> to build BrowserFS. The minified library can then be found as <code>lib/browserfs.min.js</code>.</p><h3>Testing</h3><p>To run unit tests, simply run <code>make test</code> <strong>(NOTE: This will launch multiple web browsers!)</strong>. You may need to change <code>karma.conf.js</code> if you do not have Chrome, Safari, Opera, and Firefox installed.</p><h3>License</h3><p>BrowserFS is licensed under the MIT License. See <code>LICENSE</code> for details.</p>
       </div>
     </div>
     <div id='footer'>
   Generated on
-  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  Wed May 22 2013 22:03:54 GMT-0400 (EDT)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
-  v1.6.1
+  v1.7.0
   (Node.js v0.10.4).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts

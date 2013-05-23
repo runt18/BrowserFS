@@ -135,6 +135,57 @@
 </div>
 <div class='tags'>
 </div>
+      <h2>Constant Summary</h2>
+      <dl class='constants'>
+        <dt id='NOP-constant'>
+          NOP
+          =
+          <div class='docstring'>
+  <p>Indicates that the code should not do anything.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>0</code></pre>
+        </dd>
+        <dt id='THROW_EXCEPTION-constant'>
+          THROW_EXCEPTION
+          =
+          <div class='docstring'>
+  <p>Indicates that the code should throw an exception.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>1</code></pre>
+        </dd>
+        <dt id='TRUNCATE_FILE-constant'>
+          TRUNCATE_FILE
+          =
+          <div class='docstring'>
+  <p>Indicates that the code should truncate the file, but only if it is a file.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>2</code></pre>
+        </dd>
+        <dt id='CREATE_FILE-constant'>
+          CREATE_FILE
+          =
+          <div class='docstring'>
+  <p>Indicates that the code should create the file.</p>
+</div>
+<div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>3</code></pre>
+        </dd>
+      </dl>
       <h2>Class Method Summary</h2>
       <ul class='summary'>
   <li>
@@ -146,6 +197,100 @@
     <span class='bound note title'>Bound</span>
     <span class='desc'>
       Get an object representing the given file mode.
+    </span>
+  </li>
+</ul>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#constructor-instance'>
+        - (void) <strong>constructor</strong>(modeStr)
+      </a>
+    </span>
+    <span class='constructor note title'>Constructor</span>
+    <span class='desc'>
+      This should never be called directly.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isReadable-instance'>
+        - (Boolean) <strong>isReadable</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns true if the file is readable.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isWriteable-instance'>
+        - (Boolean) <strong>isWriteable</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns true if the file is writeable.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isTruncating-instance'>
+        - (Boolean) <strong>isTruncating</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns true if the file mode should truncate.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isAppendable-instance'>
+        - (Boolean) <strong>isAppendable</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns true if the file is appendable.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isSynchronous-instance'>
+        - (Boolean) <strong>isSynchronous</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns true if the file is open in synchronous mode.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isExclusive-instance'>
+        - (Boolean) <strong>isExclusive</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns true if the file is open in exclusive mode.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#pathExistsAction-instance'>
+        - (Number) <strong>pathExistsAction</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns one of the static fields on this object that indicates the appropriate response to the path existing.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#pathNotExistsAction-instance'>
+        - (Number) <strong>pathNotExistsAction</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Returns one of the static fields on this object that indicates the appropriate response to the path not existing.
     </span>
   </li>
 </ul>
@@ -192,13 +337,171 @@
 </div>
   </div>
 </div>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-instance'>
+      - (void) <strong>constructor</strong>(modeStr)
+    </p>
+    <div class='docstring'>
+  <p>This should never be called directly.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>modeStr</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The string representing the mode</span>
+    </li>
+  </ul>
+  <h3>Throws:</h3>
+  <ul class='throw'>
+    <li>
+      <span class='type'></span>
+      (<tt><a href='../../classes/BrowserFS/ApiError.html'>BrowserFS.ApiError</a></tt>)
+      &mdash;
+      <span class='desc'>when the mode string is invalid</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='isReadable-instance'>
+      - (Boolean) <strong>isReadable</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns true if the file is readable.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isWriteable-instance'>
+      - (Boolean) <strong>isWriteable</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns true if the file is writeable.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isTruncating-instance'>
+      - (Boolean) <strong>isTruncating</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns true if the file mode should truncate.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isAppendable-instance'>
+      - (Boolean) <strong>isAppendable</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns true if the file is appendable.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isSynchronous-instance'>
+      - (Boolean) <strong>isSynchronous</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns true if the file is open in synchronous mode.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isExclusive-instance'>
+      - (Boolean) <strong>isExclusive</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns true if the file is open in exclusive mode.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='pathExistsAction-instance'>
+      - (Number) <strong>pathExistsAction</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns one of the static fields on this object that indicates the
+appropriate response to the path existing.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Number</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='pathNotExistsAction-instance'>
+      - (Number) <strong>pathNotExistsAction</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Returns one of the static fields on this object that indicates the
+appropriate response to the path not existing.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Number</tt></li>
+  </ul>
+</div>
+  </div>
+</div>
     </div>
     <div id='footer'>
   Generated on
-  Wed May 22 2013 16:43:51 GMT-0400 (EDT)
+  Wed May 22 2013 22:03:54 GMT-0400 (EDT)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
-  v1.6.1
+  v1.7.0
   (Node.js v0.10.4).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts
