@@ -17,7 +17,11 @@ module.exports = function(config) {
       'lib/load_fixtures.js',
       'test/000-setup.js',
       'test/node/*.js',
-      'test/zzz-test_def.js'
+      'test/zzz-test_def.js',
+
+      '../dbfs-demo/js/jquery.js',
+      '../dbfs-demo/js/dropbox.js',
+      '../dropbox-fs/dropbox.js'
     ],
 
     // list of files to exclude
@@ -69,7 +73,7 @@ module.exports = function(config) {
 
 
     // If browser does not capture in given timeout [ms], kill it
-    captureTimeout: 60000,
+    captureTimeout: 6000,
 
 
     // Continuous Integration mode

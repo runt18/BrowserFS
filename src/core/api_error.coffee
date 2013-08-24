@@ -47,6 +47,8 @@ class BrowserFS.ApiError
   # task. This could be due to a filemode error.
   @PERMISSIONS_ERROR: 900
 
+  @ALREADY_EXISTS: 901
+
   # @param [Number] type The type of error. Use one of the static fields of this class as the type.
   # @param [String?] message A descriptive error message.
   constructor: (@type, @message="") ->
@@ -62,5 +64,6 @@ class BrowserFS.ApiError
       when BrowserFS.ApiError.DRIVE_FULL then 'Drive Full'
       when BrowserFS.ApiError.NOT_SUPPORTED then 'Not Supported'
       when BrowserFS.ApiError.PERMISSIONS_ERROR then 'Permissions Error'
+      when BrowserFS.ApiError.ALREADY_EXISTS then 'Directory already exists'
       else 'Error'
     "BrowserFS #{typeStr}: #{@message}"

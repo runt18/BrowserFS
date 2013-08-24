@@ -1,7 +1,9 @@
 // Defines/generates all of our Jasmine unit tests from the node unit tests.
 (function() {
   "use strict";
-  var backends = [];
+  window.backends = [];
+
+  var timeout = 5000
 
   // Generates a unit test.
   var generateTest = function(testName, test) {
@@ -14,14 +16,14 @@
       });
       waitsFor(function() {
         return window.__numWaiting === 0;
-      }, "All callbacks should fire", 600000);
+      }, "All callbacks should fire", timeout);
       runs(function() {
         // Run the exit callback, if any.
         process._exitCb();
       });
       waitsFor(function() {
         return window.__numWaiting === 0;
-      }, "All callbacks should fire", 600000);
+      }, "All callbacks should fire", timeout);
     });
   };
 
@@ -39,7 +41,7 @@
     }
   };
 
-  var generateAllTests = function() {
+  window.generateAllTests = function() {
     // programmatically create a single test suite for each filesystem we wish to
     // test
     var testGeneratorFactory = function(backend) {
@@ -52,29 +54,28 @@
     __karma__.start();
   };
 
-  // Add LocalStorage-backed filesystem
-  if (BrowserFS.FileSystem.LocalStorage.isAvailable()) {
-    var lsfs = new BrowserFS.FileSystem.LocalStorage();
-    lsfs.empty();
-    backends.push(lsfs);
-  }
+  // // Add LocalStorage-backed filesystem
+  // if (BrowserFS.FileSystem.LocalStorage.isAvailable()) {
+  //   var lsfs = new BrowserFS.FileSystem.LocalStorage();
+  //   lsfs.empty();
+  //   backends.push(lsfs);
+  // }
 
-  // Add in-memory filesystem
-  backends.push(new BrowserFS.FileSystem.InMemory());
+  // // Add in-memory filesystem
+  // backends.push(new BrowserFS.FileSystem.InMemory());
 
-  // Add AJAX filesystem
-  if (BrowserFS.FileSystem.XmlHttpRequest.isAvailable())
-    backends.push(new BrowserFS.FileSystem.XmlHttpRequest('/listings.json'));
+  // // Add AJAX filesystem
+  // if (BrowserFS.FileSystem.XmlHttpRequest.isAvailable())
+  //   backends.push(new BrowserFS.FileSystem.XmlHttpRequest('/listings.json'));
 
-  // Add mountable filesystem
-  var im2 = new BrowserFS.FileSystem.InMemory();
-  //var im3 = new BrowserFS.FileSystem.InMemory();
-  var mfs = new BrowserFS.FileSystem.MountableFileSystem();
-  mfs.mount('/', im2);
-  //TODO: Test when API Error has a 'file' attribute that MFS can appropriately
-  // alter when an error is raised.
-  //mfs.mount('/test', im2);
-  backends.push(mfs);
+  // // Add mountable filesystem
+  // var im2 = new BrowserFS.FileSystem.InMemory();
+  // //var im3 = new BrowserFS.FileSystem.InMemory();
+  // var mfs = new BrowserFS.FileSystem.MountableFileSystem();
+  // mfs.mount('/', im2);
+  // //TODO: Test when API Error has a 'file' attribute that MFS can appropriately
+  // // alter when an error is raised.
+  // //mfs.mount('/test', im2);
+  // backends.push(mfs);
 
-  generateAllTests();
 })(this);
