@@ -19,9 +19,10 @@ module.exports = function(config) {
       'test/node/*.js',
       'test/zzz-test_def.js',
 
-      '../dbfs-demo/js/jquery.js',
-      '../dbfs-demo/js/dropbox.js',
-      '../dropbox-fs/dropbox.js'
+      '../dbfs-demo/vendor/jquery/jquery.js',
+      '../dbfs-demo/vendor/dropbox-build/dropbox.js',
+      '../dropbox-fs/dropbox.js',
+      'test/db-setup.js'
     ],
 
     // list of files to exclude
