@@ -21,6 +21,7 @@ module.exports = function(config) {
 
       '../dbfs-demo/vendor/jquery/jquery.js',
       '../dbfs-demo/vendor/dropbox-build/dropbox.js',
+      '../dropbox-fs/vendor/async/lib/async.js',
       '../dropbox-fs/dropbox.js',
       'test/db-setup.js'
     ],
