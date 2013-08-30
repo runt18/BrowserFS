@@ -3,7 +3,7 @@
   "use strict";
   window.backends = [];
 
-  var timeout = 5000
+  var timeout = 10000
 
   // Generates a unit test.
   var generateTest = function(testName, test) {
