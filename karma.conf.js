@@ -75,7 +75,7 @@ module.exports = function(config) {
 
 
     // If browser does not capture in given timeout [ms], kill it
-    captureTimeout: 6000,
+    captureTimeout: 60000,
 
 
     // Continuous Integration mode
