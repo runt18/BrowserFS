@@ -76,5 +76,11 @@
   //mfs.mount('/test', im2);
   backends.push(mfs);
 
-  generateAllTests();
+  var gdfs = new BrowserFS.FileSystem.GDrive();
+  backends.push(gdfs);
+
+  gdfs.empty(function(){
+    generateAllTests();
+  });
+
 })(this);
