@@ -61,7 +61,8 @@ class BrowserFS.File.GDriveFile extends BrowserFS.File.PreloadFile
 
 # A BrowserFS backend that stores files in Google Drive
 class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
-  constructor: (cb) ->
+  constructor: (token, cb) ->
+    console.log token
     self = this
     details = {
       client_id: '555024705616.apps.googleusercontent.com'
@@ -81,6 +82,14 @@ class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
         details.immediate = false
         gapi.auth.authorize(details, doAuth)
 
+    # debugger
+
+    gapi.load((a, b)->
+      console.log 'hi'
+      console.log a
+      console.log b
+    )
+    # cb()
     gapi.auth.authorize(details, doAuth)
 
   getName: -> 'Google Drive'
@@ -96,12 +105,15 @@ class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
   supportsSynch: -> false
 
   empty: (cb) ->
+    cb()
 
   rename: (oldPath, newPath, cb) ->
 
   stat: (path, isLstat, cb) ->
 
   open: (path, flags, mode, cb) ->
+    console.log(path)
+    cb()
 
   unlink: (path, cb) ->
 
