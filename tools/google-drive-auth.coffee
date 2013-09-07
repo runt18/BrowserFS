@@ -4,6 +4,7 @@ google = require 'googleapis'
 open = require 'open'
 http = require 'http'
 url = require 'url'
+fs = require 'fs'
 
 id = '555024705616.apps.googleusercontent.com'
 secret = '5e9PHL3GL7lR8hyGfIW_ssWY'
@@ -20,11 +21,14 @@ callback = client.generateAuthUrl({
 http.createServer((req, res) ->
   {code} = url.parse(req.url, true).query
   if code
-    console.log(code)
+    data = JSON.stringify({code: code})
+    fs.mkdirSync('test/google') unless fs.existsSync('test/google')
+    fs.writeFileSync('test/google/token.json', data)
     res.end('Authenticated sucessfuly. Please close this page.\n')
+    console.log('Done')
     process.exit(0)
   else
-    console.log('error')
+    console.error('error')
     process.exit(1)
 ).listen(port, '127.0.0.1')
 

@@ -10,3 +10,4 @@ vendor/async
 vendor/dropbox-build
 test/token.json
 test/ssl/
+test/google
