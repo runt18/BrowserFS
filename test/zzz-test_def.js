@@ -52,35 +52,45 @@
     __karma__.start();
   };
 
-  // Add LocalStorage-backed filesystem
-  if (BrowserFS.FileSystem.LocalStorage.isAvailable()) {
-    var lsfs = new BrowserFS.FileSystem.LocalStorage();
-    lsfs.empty();
-    backends.push(lsfs);
-  }
+  // // Add LocalStorage-backed filesystem
+  // if (BrowserFS.FileSystem.LocalStorage.isAvailable()) {
+  //   var lsfs = new BrowserFS.FileSystem.LocalStorage();
+  //   lsfs.empty();
+  //   backends.push(lsfs);
+  // }
 
-  // Add in-memory filesystem
-  backends.push(new BrowserFS.FileSystem.InMemory());
+  // // Add in-memory filesystem
+  // backends.push(new BrowserFS.FileSystem.InMemory());
 
-  // Add AJAX filesystem
-  if (BrowserFS.FileSystem.XmlHttpRequest.isAvailable())
-    backends.push(new BrowserFS.FileSystem.XmlHttpRequest('/listings.json'));
+  // // Add AJAX filesystem
+  // if (BrowserFS.FileSystem.XmlHttpRequest.isAvailable())
+  //   backends.push(new BrowserFS.FileSystem.XmlHttpRequest('/listings.json'));
 
-  // Add mountable filesystem
-  var im2 = new BrowserFS.FileSystem.InMemory();
-  //var im3 = new BrowserFS.FileSystem.InMemory();
-  var mfs = new BrowserFS.FileSystem.MountableFileSystem();
-  mfs.mount('/', im2);
-  //TODO: Test when API Error has a 'file' attribute that MFS can appropriately
-  // alter when an error is raised.
-  //mfs.mount('/test', im2);
-  backends.push(mfs);
+  // // Add mountable filesystem
+  // var im2 = new BrowserFS.FileSystem.InMemory();
+  // //var im3 = new BrowserFS.FileSystem.InMemory();
+  // var mfs = new BrowserFS.FileSystem.MountableFileSystem();
+  // mfs.mount('/', im2);
+  // //TODO: Test when API Error has a 'file' attribute that MFS can appropriately
+  // // alter when an error is raised.
+  // //mfs.mount('/test', im2);
+  // backends.push(mfs);
 
-  var gdfs = new BrowserFS.FileSystem.GDrive();
-  backends.push(gdfs);
+  var req = new XMLHttpRequest();
+  req.open('GET', '/test/google/token.json');
+  var data = null
+  req.onerror = function(e){ console.error(req.statusText); };
+  req.onload = function(e){
+    if(!(req.readyState === 4 && req.status === 200)){
+     console.error(req.statusText);
+    }
+    var creds = JSON.parse(req.response);
+    var gdfs = new BrowserFS.FileSystem.GDrive(creds);
+    backends.push(gdfs);
 
-  gdfs.empty(function(){
-    generateAllTests();
-  });
-
+    gdfs.empty(function(){
+      generateAllTests();
+    });
+  };
+  req.send();
 })(this);
