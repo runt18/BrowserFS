@@ -24,12 +24,14 @@ FIXTURES  := $(shell find test/fixtures -name '*')
 release: lib/browserfs.min.js
 dev: lib/browserfs.js
 
-test: $(GRUNT) $(KARMA) listings.json lib/load_fixtures.js
+test: $(GRUNT) $(KARMA) listings.json lib/load_fixtures.js \
+	test/google/token.json
 	$(GRUNT)
 doc: doc/index.html
 clean:
 	@rm -f lib/*.js lib/*.map
 	@rm -rf tmp/
+	@rm -rf test/google
 dependencies: $(COFFEE) $(UGLIFYJS) $(CODO) $(KARMA)
 
 doc/index.html: $(SRCS) $(CODO) README.md
@@ -55,3 +57,6 @@ lib/browserfs.min.js: lib/browserfs.js $(UGLIFYJS)
 
 lib/load_fixtures.js: tools/FixtureLoaderMaker.coffee $(COFFEE) $(FIXTURES)
 	$(COFFEE) $<
+
+test/google/token.json:
+	$(COFFEE) tools/google-drive-auth.coffee
