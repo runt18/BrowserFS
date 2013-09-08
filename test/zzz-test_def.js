@@ -1,7 +1,7 @@
 // Defines/generates all of our Jasmine unit tests from the node unit tests.
 (function() {
   "use strict";
-  var backends = [];
+  window.backends = [];
 
   // Generates a unit test.
   var generateTest = function(testName, test) {
@@ -39,7 +39,7 @@
     }
   };
 
-  var generateAllTests = function() {
+  window.generateAllTests = function() {
     // programmatically create a single test suite for each filesystem we wish to
     // test
     var testGeneratorFactory = function(backend) {
@@ -76,21 +76,5 @@
   // //mfs.mount('/test', im2);
   // backends.push(mfs);
 
-  var req = new XMLHttpRequest();
-  req.open('GET', '/test/google/token.json');
-  var data = null
-  req.onerror = function(e){ console.error(req.statusText); };
-  req.onload = function(e){
-    if(!(req.readyState === 4 && req.status === 200)){
-     console.error(req.statusText);
-    }
-    var creds = JSON.parse(req.response);
-    var gdfs = new BrowserFS.FileSystem.GDrive(creds);
-    backends.push(gdfs);
 
-    gdfs.empty(function(){
-      generateAllTests();
-    });
-  };
-  req.send();
 })(this);

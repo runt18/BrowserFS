@@ -10,6 +10,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'test/gdrive-intro.js',
       'vendor/*.js',
       'src/core/*.coffee',
       'src/generic/*.coffee',
@@ -17,7 +18,8 @@ module.exports = function(config) {
       'lib/load_fixtures.js',
       'test/000-setup.js',
       'test/node/*.js',
-      'test/zzz-test_def.js'
+      'test/zzz-test_def.js',
+      'https://apis.google.com/js/client.js?onload=load'
     ],
 
     // list of files to exclude

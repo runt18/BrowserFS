@@ -62,35 +62,41 @@ class BrowserFS.File.GDriveFile extends BrowserFS.File.PreloadFile
 # A BrowserFS backend that stores files in Google Drive
 class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
   constructor: (token, cb) ->
-    console.log token
-    self = this
+    # console.log token
+    gapi.auth.setToken(token)
+
+    # self = this
     details = {
       client_id: '555024705616.apps.googleusercontent.com'
       scope: 'https://www.googleapis.com/auth/drive'
       immediate: true
     }
 
-    doAuth = (result) ->
-      if result and not result.error
-        console.debug('Authenticated successfully')
-        console.debug(result)
-
-        gapi.client.load('drive', 'v2', ->
-          cb(self) if cb
-        )
-      else
-        details.immediate = false
-        gapi.auth.authorize(details, doAuth)
-
-    # debugger
-
-    gapi.load((a, b)->
-      console.log 'hi'
-      console.log a
-      console.log b
+    gapi.auth.authorize(details, (result) ->
+      console.log(result)
     )
-    # cb()
-    gapi.auth.authorize(details, doAuth)
+
+    # doAuth = (result) ->
+    #   if result and not result.error
+    #     console.debug('Authenticated successfully')
+    #     console.debug(result)
+
+    #     gapi.client.load('drive', 'v2', ->
+    #       cb(self) if cb
+    #     )c
+    #   else
+    #     details.immediate = false
+    #     gapi.auth.authorize(details, doAuth)
+
+
+
+    # gapi.load((a, b)->
+
+    #   console.log gapi
+    #   console.log 'hi'
+    #   console.log a
+    #   console.log b
+    # )
 
   getName: -> 'Google Drive'
 
@@ -122,3 +128,7 @@ class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
   mkdir: (path, mode, cb) ->
 
   readdir: (path, cb) ->
+
+  writeFile: (path, data, encoding, cb) ->
+    console.log(path)
+    cb()
