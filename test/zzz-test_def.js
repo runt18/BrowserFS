@@ -5,6 +5,8 @@
 
   var timeout = 5000;
 
+  var BENCHMARK = true;
+
   // Generates a unit test.
   var generateTest = function(testName, test) {
     it (testName, function() {
@@ -33,10 +35,17 @@
       BrowserFS.initialize(backend);
     });
     generateTest("Load fixtures", window.loadFixtures);
-    for (var testName in window.tests) {
-      if (window.tests.hasOwnProperty(testName)) {
+    var tests;
+    if(BENCHMARK){
+      tests = window.benchmarks;
+    }
+    else {
+      tests = window.tests;
+    }
+    for (var testName in tests) {
+      if (tests.hasOwnProperty(testName)) {
         // Generate a unit test for this Node test
-        generateTest(testName, window.tests[testName]);
+        generateTest(testName, tests[testName]);
       }
     }
   };

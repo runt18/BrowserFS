@@ -6,7 +6,7 @@ var randomString = function(length){
     return chars.join('');
 };
 
-this.tests.bench_append = function(){
+this.benchmarks.bench_append = function(){
     var rootFS = fs.getRootFS();
     if (rootFS.isReadOnly()) return;
 

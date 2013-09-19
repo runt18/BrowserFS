@@ -19,6 +19,7 @@ module.exports = function(config) {
       'lib/load_fixtures.js',
       'test/000-setup.js',
       'test/node/*.js',
+      'test/benchmark/*.js',
       'test/zzz-test_def.js'
     ],
 

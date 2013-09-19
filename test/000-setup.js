@@ -4,6 +4,7 @@
 
   // Make these things global
   window.tests = {};
+  window.benchmarks = {};
   window.fs = BrowserFS.node.fs;
   window.path = BrowserFS.node.path;
   window.process = BrowserFS.node.process;
