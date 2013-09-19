@@ -5,7 +5,7 @@
 
   var timeout = 5000;
 
-  var BENCHMARK = true;
+  var BENCHMARK = __karma__.config.mode === 'benchmark';
 
   // Generates a unit test.
   var generateTest = function(testName, test) {

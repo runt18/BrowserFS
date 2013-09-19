@@ -27,9 +27,12 @@ dev: lib/browserfs.js
 
 dropbox_test: dropbox_tokens test
 
+benchmark:
+	$(GRUNT) --mode=benchmark
+
 test: $(GRUNT) $(KARMA) listings.json lib/load_fixtures.js \
 	vendor/async/lib/async.js vendor/dropbox-build/dropbox.js
-	$(GRUNT)
+	$(GRUNT) --mode=test
 doc: doc/index.html
 clean:
 	@rm -f lib/*.js lib/*.map
