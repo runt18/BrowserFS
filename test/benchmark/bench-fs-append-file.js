@@ -22,7 +22,7 @@ this.benchmarks.bench_append = function(){
 
     var fail = function(){
         throw new Error('Benchmark: append file failed.');
-    }
+    };
 
     var append = function(data, cb){
         fs.appendFile('append-bench.txt', data, function(err){
