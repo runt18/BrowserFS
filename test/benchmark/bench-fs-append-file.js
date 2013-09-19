@@ -20,10 +20,14 @@ this.benchmarks.bench_append = function(){
 
     var start = Date.now();
 
+    var fail = function(){
+        throw new Error('Benchmark: append file failed.');
+    }
+
     var append = function(data, cb){
         fs.appendFile('append-bench.txt', data, function(err){
             if(err){
-                throw new Error('Benchmark: append file failed.');
+                fail();
                 cb(err);
             }
             else {
@@ -33,9 +37,14 @@ this.benchmarks.bench_append = function(){
     };
 
     var finished = function(err){
-        var end = Date.now();
-        var diff = end - start;
-        console.log('Appended ' + numStrings + ' strings in ' + diff + ' ms.');
+        if(err){
+            fail();
+        }
+        else {
+            var end = Date.now();
+            var diff = end - start;
+            console.log(rootFS.getName() + ' backend appended ' + numStrings + ' strings in ' + diff + ' ms.');
+        }
     };
 
     async.each(strings, append, finished);
